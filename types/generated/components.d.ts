@@ -1,5 +1,39 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface BlocksCardGrid extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_card_grids';
+  info: {
+    displayName: 'Card Grid';
+  };
+  attributes: {
+    cards: Schema.Attribute.Component<'shared.card', true>;
+  };
+}
+
+export interface BlocksContentWithImage extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_content_with_images';
+  info: {
+    displayName: 'Content With Image';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    link: Schema.Attribute.Component<'shared.link', false>;
+    reversed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface BlocksFaq extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_faqs';
+  info: {
+    displayName: 'FAQ';
+  };
+  attributes: {
+    faq: Schema.Attribute.Component<'shared.card', true>;
+  };
+}
+
 export interface BlocksHero extends Struct.ComponentSchema {
   collectionName: 'components_blocks_heroes';
   info: {
@@ -10,6 +44,44 @@ export interface BlocksHero extends Struct.ComponentSchema {
     image: Schema.Attribute.Media<'images' | 'files'>;
     links: Schema.Attribute.Component<'shared.link', true>;
     text: Schema.Attribute.RichText;
+  };
+}
+
+export interface BlocksMarkdown extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_markdowns';
+  info: {
+    displayName: 'Markdown';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface BlocksNewsletter extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_newsletters';
+  info: {
+    displayName: 'Newsletter';
+  };
+  attributes: {
+    formId: Schema.Attribute.String;
+    heading: Schema.Attribute.String;
+    label: Schema.Attribute.String;
+    placeholder: Schema.Attribute.String;
+    text: Schema.Attribute.Text;
+  };
+}
+
+export interface BlocksPersonCard extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_person_cards';
+  info: {
+    displayName: 'Person Card';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files'>;
+    personJob: Schema.Attribute.String;
+    personName: Schema.Attribute.String;
+    text: Schema.Attribute.Text;
   };
 }
 
@@ -62,6 +134,17 @@ export interface LayoutHeader extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedCard extends Struct.ComponentSchema {
+  collectionName: 'components_shared_cards';
+  info: {
+    displayName: 'Card';
+  };
+  attributes: {
+    heading: Schema.Attribute.String;
+    text: Schema.Attribute.Text;
+  };
+}
+
 export interface SharedLink extends Struct.ComponentSchema {
   collectionName: 'components_shared_links';
   info: {
@@ -92,11 +175,18 @@ export interface SharedLogoLink extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'blocks.card-grid': BlocksCardGrid;
+      'blocks.content-with-image': BlocksContentWithImage;
+      'blocks.faq': BlocksFaq;
       'blocks.hero': BlocksHero;
+      'blocks.markdown': BlocksMarkdown;
+      'blocks.newsletter': BlocksNewsletter;
+      'blocks.person-card': BlocksPersonCard;
       'blocks.section-heading': BlocksSectionHeading;
       'layout.banner': LayoutBanner;
       'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
+      'shared.card': SharedCard;
       'shared.link': SharedLink;
       'shared.logo-link': SharedLogoLink;
     }

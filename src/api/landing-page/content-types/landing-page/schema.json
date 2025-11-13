@@ -21,7 +21,13 @@
       "type": "dynamiczone",
       "components": [
         "blocks.hero",
-        "blocks.section-heading"
+        "blocks.section-heading",
+        "blocks.card-grid",
+        "blocks.content-with-image",
+        "blocks.markdown",
+        "blocks.person-card",
+        "blocks.faq",
+        "blocks.newsletter"
       ]
     }
   }

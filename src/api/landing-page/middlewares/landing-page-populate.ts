@@ -1,4 +1,5 @@
 import type { Core } from "@strapi/strapi";
+import { link } from "fs";
 
 const populate = {
   blocks: {
@@ -12,6 +13,33 @@ const populate = {
         },
       },
       "blocks.section-heading": true,
+      "blocks.card-grid": {
+        populate: {
+          cards: true,
+        },
+      },
+      "blocks.content-with-image": {
+        populate: {
+          link: true,
+          image: {
+            fields: ["alternativeText", "url"],
+          },
+        },
+      },
+      "blocks.markdown": true,
+      "blocks.person-card": {
+        populate: {
+          image: {
+            fields: ["alternativeText", "url"],
+          },
+        },
+      },
+      "blocks.faq": {
+        populate: {
+          faq: true,
+        },
+      },
+      "blocks.newsletter": true,
     },
   },
 };
